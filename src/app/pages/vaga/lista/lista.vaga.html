@@ -1,0 +1,36 @@
+<div class="container">
+    <h4 *ngIf="aberto">Lista de Vagas Abertas</h4>
+    <h4 *ngIf="!aberto">Lista de Vagas Finalizadas</h4>
+    <hr>
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" [routerLink]="['/vagas/cadastrar']"><strong>Novo</strong></button>
+    <button *ngIf="aberto" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="buscarTodosEncerrados()"><strong>Buscar Finalizadas</strong></button>
+    <button *ngIf="!aberto" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="buscarTodosAbertos()"><strong>Buscar Abertas</strong></button>
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" [routerLink]="['/tecnologias']"><strong>Tecnologias</strong></button>
+    <div *ngIf="erroServidor != null" class="alert alert-danger" role="alert">
+        <strong>Erro:</strong> {{erroServidor}}
+    </div>
+    <table class="center mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+        <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Nome</th>
+                <th class="mdl-data-table__cell--non-numeric">Total de Candidatos</th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of list">
+
+                <td class="mdl-data-table__cell--non-numeric">{{item.Nome}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{item.TotalCandidatos}}</td>
+                <td *ngIf="!item.Encerrado">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" [routerLink]="['/vagas/cadastrar', item.VagaId]"><strong>Editar</strong></button>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" [routerLink]="['/vagas/finalizar', item.VagaId]"><strong>Finalizar</strong></button>
+                </td>
+                <td *ngIf="item.Encerrado">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" [routerLink]="['/vagas/relatorio', item.VagaId]"><strong>Relatório</strong></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

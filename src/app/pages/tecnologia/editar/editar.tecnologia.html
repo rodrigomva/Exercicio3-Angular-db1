@@ -1,0 +1,16 @@
+<div class="container">
+    <h5>Editar Cadastro - Tecnologia</h5>
+    <form>
+      <div *ngIf="erroServidor != null" class="alert alert-danger" role="alert">
+          <strong>Erro:</strong> {{erroServidor}}
+      </div>
+      <div class="form-group">
+        <label for="alterEgo">Nome</label>
+        <input type="text" class="form-control" [(ngModel)]="tecnologia.Nome" name="nome">
+      </div>
+ 
+      <button (click)="editar()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Salvar</button>
+      <button [routerLink]="['/tecnologias']" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Voltar</button>
+ 
+    </form>
+</div>

@@ -1,0 +1,29 @@
+<div class="container">
+    <h4>Finalizar Triagem - Vaga</h4>
+    <hr>
+    <form>
+        <div *ngIf="erroServidor != null" class="alert alert-danger" role="alert">
+            <strong>Erro:</strong> {{erroServidor}}
+        </div>
+        <table class="center mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Código</th>
+                    <th class="mdl-data-table__cell--non-numeric">Nome</th>
+                    <th class="mdl-data-table__cell--non-numeric">Peso</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of listTecnologias">
+
+                    <td class="mdl-data-table__cell--non-numeric">{{item.TecnologiaId}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{item.Nome}}</td>
+                    <td class="mdl-data-table__cell--non-numeric"><input placeholder="Peso" type="number" [(ngModel)]="item.PesoVaga" name="pesoValor"/> </td>
+                </tr>
+            </tbody>
+        </table>
+
+              <button (click)="salvar()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Salvar</button>
+      <button [routerLink]="['/vagas']" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Voltar</button>
+    </form>
+</div>

@@ -1,0 +1,30 @@
+<div class="container">
+    <h4>Lista de Tecnologias</h4>
+    <hr>
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" [routerLink]="['/tecnologias/cadastrar']"><strong>Novo</strong></button>
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" [routerLink]="['/vagas']"><strong>Vagas Abertas</strong></button>
+    <div *ngIf="erroServidor != null" class="alert alert-danger" role="alert">
+        <strong>Erro:</strong> {{erroServidor}}
+    </div>
+    <table class="center mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+        <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Código</th>
+                <th class="mdl-data-table__cell--non-numeric">Nome</th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of list">
+
+                <td class="mdl-data-table__cell--non-numeric">{{item.TecnologiaId}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{item.Nome}}</td>
+                <td>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" [routerLink]="['/tecnologias/editar', item.TecnologiaId]"><strong>Editar</strong></button>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="confirmarExlucao(item)"><strong>Excluir</strong></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

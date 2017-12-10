@@ -1,0 +1,44 @@
+<div class="container">
+    <h5>Novo cadastro - Vaga</h5>
+    <hr>
+    <form>
+        <div *ngIf="erroServidor != null" class="alert alert-danger" role="alert">
+            <strong>Erro:</strong> {{erroServidor}}
+        </div>
+        <div class="form-group">
+            <label for="alterEgo">Nome</label>
+            <input type="text" class="form-control" [(ngModel)]="vaga.Nome" name="nome">
+        </div>
+        <div class="form-group">
+            <label for="alterEgo">Descrição</label>
+            <input type="text" class="form-control" [(ngModel)]="vaga.Descricao" name="nome">
+        </div>
+
+        <button (click)="salvar()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Salvar</button>
+        <button *ngIf="vaga.Candidatos.length > 0" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" [routerLink]="['/vagas/finalizar', vaga.VagaId]">Finalizar</button>
+        <button [routerLink]="['/vagas']" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Voltar</button>
+    </form>
+
+    <hr>
+    <div *ngIf="vaga.VagaId > 0">
+        <h5>Candidatos</h5>
+        <button [routerLink]="['/vagas/candidato/cadastrar']" [queryParams]="{ vagaId: vaga.VagaId }" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Novo Candidao</button>
+        <table class="center mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Nome</th>
+                    <th class="mdl-data-table__cell--non-numeric">E-mail</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let candidato of vaga.Candidatos">
+                    <td class="mdl-data-table__cell--non-numeric">{{candidato.Nome}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{candidato.Email}}</td>
+                    <td>
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="confirmarExlucaoCandidato(candidato)"><strong>Excluir</strong></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

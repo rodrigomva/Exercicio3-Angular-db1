@@ -1,0 +1,29 @@
+@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
+
+.container{
+  background-color:whitesmoke;
+}
+
+
+
+h4,h5 p{
+  text-align: center;
+}
+
+
+body {
+  background-color:whitesmoke;
+}
+
+table.center {
+    margin-left:auto; 
+    margin-right:auto;
+    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+} 
+
+a.menu{
+  color: black;
+  font-size: 15px;
+}

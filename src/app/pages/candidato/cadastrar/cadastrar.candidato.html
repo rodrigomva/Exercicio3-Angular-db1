@@ -1,0 +1,40 @@
+<div class="container">
+  <h5>Novo Cadastro - Candidato</h5>
+  <hr>
+  <form>
+    <div *ngIf="erroServidor != null" class="alert alert-danger" role="alert">
+      <strong>Erro:</strong> {{erroServidor}}
+    </div>
+    <div class="form-group">
+      <label for="alterEgo">Nome</label>
+      <input type="text" class="form-control" [(ngModel)]="candidato.Nome" name="nome">
+    </div>
+    <div class="form-group">
+      <label for="alterEgo">E-mail</label>
+      <input type="text" class="form-control" [(ngModel)]="candidato.Email" name="email">
+    </div>
+    <hr>
+    <h5>Tecnologias</h5>
+
+    <table class="center mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+      <thead>
+        <tr>
+          <th class="mdl-data-table__cell--non-numeric"></th>
+          <th class="mdl-data-table__cell--non-numeric">Código</th>
+          <th class="mdl-data-table__cell--non-numeric">Nome</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of listTecnologias">
+          <td class="mdl-data-table__cell--non-numeric"> 
+            <input type="checkbox" class="mdl-checkbox__input" id={{item.Adicionar}} (click)="selecionarTecnologia(item,$event)" [(ngModel)]="item.Adicionar" name="tecnologia"></td>
+          <td class="mdl-data-table__cell--non-numeric">{{item.TecnologiaId}}</td>
+          <td class="mdl-data-table__cell--non-numeric">{{item.Nome}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button (click)="cadastrar()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Salvar</button>
+    <button [routerLink]="['/vagas/cadastrar/', vagaId]" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Voltar</button>
+  </form>
+</div>

@@ -1,0 +1,14 @@
+<div class="container">
+  <br>
+  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" [routerLink]="['/vagas']"><strong>Voltar</strong></button>
+  <hr>
+  <h5>Por favor, aguarde o relatório carregar...</h5>
+  <br>
+  <div style="margin:0;padding:0;" *ngIf="url != null">
+    <div style="margin:auto;padding:0;width:95%;height:50%;">
+      <iframe style="margin:0 auto 0 auto;width:100%;height:100vh;" frameborder="0" [src]="url">
+        <p>ERRO.</p>
+      </iframe>
+    </div>
+  </div>
+  <div>
